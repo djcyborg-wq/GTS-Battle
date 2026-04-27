@@ -467,39 +467,67 @@ function Avatar({
   onClick?: () => void;
 }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const transitionTimeoutRef = useRef<number | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
   const boundedProgress = Math.max(0, Math.min(1, speechProgress));
   const mouthScale = isSpeaking ? 0.7 + 0.55 * Math.abs(Math.sin(boundedProgress * Math.PI * 12)) : 0;
-
-  // Virtueller Videoschnitt:
-  // idleRange: zwinkern/lachen, speakingRange: sprechen.
-  // Bei Bedarf Werte feinjustieren.
-  const idleRange = { start: 0.0, end: 2.4 };
-  const speakingRange = { start: 2.4, end: 7.8 };
+  const transitionDelayMs = 2000;
+  const idleRestartDelayMs = 2000;
+  const speakingRange = { start: 1.0, end: 3.5 };
 
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    const targetRange = isSpeaking ? speakingRange : { start: 0.0, end: 1.0 };
 
-    const range = isSpeaking ? speakingRange : idleRange;
-    const onTimeUpdate = () => {
-      if (video.currentTime < range.start || video.currentTime > range.end) {
-        video.currentTime = range.start;
+    const keepInRange = () => {
+      if (isSpeaking) {
+        if (video.currentTime < speakingRange.start || video.currentTime > speakingRange.end) {
+          video.currentTime = speakingRange.start;
+        }
+        return;
       }
     };
 
-    const jumpToRangeStart = async () => {
-      video.currentTime = range.start;
-      try {
-        await video.play();
-      } catch {
-        // autoplay kann vom Browser blockiert sein; dann bleibt Avatar statisch bis User-Interaktion.
+    const applyRangeAfterDelay = async () => {
+      if (transitionTimeoutRef.current) {
+        window.clearTimeout(transitionTimeoutRef.current);
       }
+      setVideoReady(false);
+
+      transitionTimeoutRef.current = window.setTimeout(async () => {
+        video.currentTime = targetRange.start;
+        try {
+          await video.play();
+        } catch {
+          // autoplay kann vom Browser blockiert sein; dann startet das Video nach User-Interaktion.
+        }
+      }, transitionDelayMs);
     };
 
-    void jumpToRangeStart();
-    video.addEventListener("timeupdate", onTimeUpdate);
+    void applyRangeAfterDelay();
+    video.addEventListener("timeupdate", keepInRange);
+    video.onended = () => {
+      if (isSpeaking) return;
+      if (transitionTimeoutRef.current) {
+        window.clearTimeout(transitionTimeoutRef.current);
+      }
+      transitionTimeoutRef.current = window.setTimeout(async () => {
+        video.currentTime = 0;
+        try {
+          await video.play();
+        } catch {
+          // autoplay kann vom Browser blockiert sein.
+        }
+      }, idleRestartDelayMs);
+    };
     return () => {
-      video.removeEventListener("timeupdate", onTimeUpdate);
+      if (transitionTimeoutRef.current) {
+        window.clearTimeout(transitionTimeoutRef.current);
+        transitionTimeoutRef.current = null;
+      }
+      video.onended = null;
+      video.removeEventListener("timeupdate", keepInRange);
     };
   }, [isSpeaking]);
 
@@ -514,13 +542,19 @@ function Avatar({
         <video
           ref={videoRef}
           className="avatar-video"
-          src="/media/avatar-host.mp4"
+          src={
+            isSpeaking
+              ? "/media/avatar-host.mp4"
+              : "/media/avatar-idle-forward.mp4"
+          }
           autoPlay
           muted
-          loop
+          loop={isSpeaking ? true : false}
           playsInline
+          onLoadedData={() => setVideoReady(true)}
           style={{
             objectPosition: "center 28%",
+            opacity: videoReady ? 1 : 0.96,
           }}
         />
         <div
