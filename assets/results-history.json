@@ -1,0 +1,548 @@
+[
+  {
+    "at": "2026-04-27T09:10:34.419Z",
+    "groupName": "Team A",
+    "roomId": "f21431cb",
+    "ranking": []
+  },
+  {
+    "at": "2026-04-27T09:08:42.481Z",
+    "groupName": "Team A",
+    "roomId": "f21431cb",
+    "ranking": []
+  },
+  {
+    "at": "2026-04-27T08:10:08.749Z",
+    "groupName": "Unbenannt",
+    "roomId": "9d679d12",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 32469,
+        "stepDurationsMs": [
+          6210,
+          3221,
+          1971,
+          1215,
+          1142,
+          1508,
+          967
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T08:01:40.335Z",
+    "groupName": "Gruppe 1",
+    "roomId": "3126e495",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 120818,
+        "stepDurationsMs": [
+          35096,
+          4428,
+          4200,
+          4077,
+          929,
+          9664,
+          2015
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:57:25.668Z",
+    "groupName": "Gruppe 1",
+    "roomId": "c9da0440",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 47274,
+        "stepDurationsMs": [
+          5988,
+          3558,
+          5360,
+          4031,
+          2098,
+          1105,
+          1497
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 124804,
+        "stepDurationsMs": [
+          48356,
+          2449,
+          3130,
+          2964,
+          1163,
+          2612,
+          1728
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:56:45.602Z",
+    "groupName": "Gruppe 1",
+    "roomId": "c9da0440",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 47274,
+        "stepDurationsMs": [
+          5988,
+          3558,
+          5360,
+          4031,
+          2098,
+          1105,
+          1497
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 0,
+        "totalMs": 0,
+        "stepDurationsMs": [],
+        "finished": false
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:54:29.410Z",
+    "groupName": "Testgruppe",
+    "roomId": "c9da0440",
+    "ranking": []
+  },
+  {
+    "at": "2026-04-27T07:46:51.781Z",
+    "groupName": "Team A",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      },
+      {
+        "rank": 3,
+        "name": "Max",
+        "progress": 0,
+        "totalMs": 0,
+        "stepDurationsMs": [],
+        "finished": false
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:19.852Z",
+    "groupName": "Team A",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:16.581Z",
+    "groupName": "Unbenannt",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:15.624Z",
+    "groupName": "Unbenannt",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:15.061Z",
+    "groupName": "Unbenannt",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:14.572Z",
+    "groupName": "Unbenannt",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:13.890Z",
+    "groupName": "Unbenannt",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:45:12.776Z",
+    "groupName": "Unbenannt",
+    "roomId": "b96865b1",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Michael",
+        "progress": 100,
+        "totalMs": 69266,
+        "stepDurationsMs": [
+          6378,
+          5266,
+          4695,
+          9439,
+          2217,
+          4568,
+          2070
+        ],
+        "finished": true
+      },
+      {
+        "rank": 2,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 113922,
+        "stepDurationsMs": [
+          43577,
+          2703,
+          4755,
+          2526,
+          1166,
+          1109,
+          1125
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:36:28.882Z",
+    "groupName": "Unbenannt",
+    "roomId": "b705dac3",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 70832,
+        "stepDurationsMs": [
+          7337,
+          6802,
+          12368,
+          2481,
+          1971,
+          2097,
+          2360
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:36:28.119Z",
+    "groupName": "Unbenannt",
+    "roomId": "b705dac3",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 70832,
+        "stepDurationsMs": [
+          7337,
+          6802,
+          12368,
+          2481,
+          1971,
+          2097,
+          2360
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:36:07.251Z",
+    "groupName": "Unbenannt",
+    "roomId": "b705dac3",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 70832,
+        "stepDurationsMs": [
+          7337,
+          6802,
+          12368,
+          2481,
+          1971,
+          2097,
+          2360
+        ],
+        "finished": true
+      }
+    ]
+  },
+  {
+    "at": "2026-04-27T07:36:05.971Z",
+    "groupName": "Unbenannt",
+    "roomId": "b705dac3",
+    "ranking": [
+      {
+        "rank": 1,
+        "name": "Mario",
+        "progress": 100,
+        "totalMs": 70832,
+        "stepDurationsMs": [
+          7337,
+          6802,
+          12368,
+          2481,
+          1971,
+          2097,
+          2360
+        ],
+        "finished": true
+      }
+    ]
+  }
+]

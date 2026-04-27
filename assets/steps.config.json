@@ -1,0 +1,182 @@
+[
+  {
+    "id": "step-1",
+    "title": "Schritt 1",
+    "instruction": "Anlageflächen wählen",
+    "sourceSlide": "ppt/slides/slide2.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-2-area-1",
+        "label": "Freihandform: Form 2",
+        "shape": "ellipse",
+        "x": 162,
+        "y": 529,
+        "width": 196,
+        "height": 103,
+        "rotation": 0
+      },
+      {
+        "id": "slide-2-area-2",
+        "label": "Freihandform: Form 3",
+        "shape": "ellipse",
+        "x": 543,
+        "y": 626,
+        "width": 298,
+        "height": 131,
+        "rotation": 0
+      }
+    ]
+  },
+  {
+    "id": "step-2",
+    "title": "Schritt 2",
+    "instruction": "Schraubenlöcher wählen",
+    "sourceSlide": "ppt/slides/slide3.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-3-area-1",
+        "label": "Ellipse 1",
+        "shape": "ellipse",
+        "x": 163,
+        "y": 423,
+        "width": 103,
+        "height": 80,
+        "rotation": 0
+      },
+      {
+        "id": "slide-3-area-2",
+        "label": "Ellipse 5",
+        "shape": "ellipse",
+        "x": 403,
+        "y": 292,
+        "width": 103,
+        "height": 80,
+        "rotation": 0
+      },
+      {
+        "id": "slide-3-area-3",
+        "label": "Ellipse 6",
+        "shape": "ellipse",
+        "x": 783,
+        "y": 520,
+        "width": 103,
+        "height": 80,
+        "rotation": 0
+      }
+    ]
+  },
+  {
+    "id": "step-3",
+    "title": "Schritt 3",
+    "instruction": "Stiftlöcher wählen",
+    "sourceSlide": "ppt/slides/slide4.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-4-area-1",
+        "label": "Ellipse 1",
+        "shape": "ellipse",
+        "x": 323,
+        "y": 490,
+        "width": 50,
+        "height": 47,
+        "rotation": 0
+      },
+      {
+        "id": "slide-4-area-2",
+        "label": "Ellipse 2",
+        "shape": "ellipse",
+        "x": 769,
+        "y": 608,
+        "width": 50,
+        "height": 47,
+        "rotation": 0
+      }
+    ]
+  },
+  {
+    "id": "step-4",
+    "title": "Schritt 4",
+    "instruction": "Traggewinde wählen",
+    "sourceSlide": "ppt/slides/slide5.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-5-area-1",
+        "label": "Ellipse 1",
+        "shape": "ellipse",
+        "x": 498,
+        "y": 398,
+        "width": 187,
+        "height": 142,
+        "rotation": 0
+      }
+    ]
+  },
+  {
+    "id": "step-5",
+    "title": "Schritt 5",
+    "instruction": "Abdruckstift wählen",
+    "sourceSlide": "ppt/slides/slide6.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-6-area-1",
+        "label": "Ellipse 1",
+        "shape": "ellipse",
+        "x": 214,
+        "y": 50,
+        "width": 142,
+        "height": 121,
+        "rotation": 0
+      }
+    ]
+  },
+  {
+    "id": "step-6",
+    "title": "Schritt 6",
+    "instruction": "Kreuz für Niederhalterausbau wählen",
+    "sourceSlide": "ppt/slides/slide7.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-7-area-1",
+        "label": "Ellipse 1",
+        "shape": "ellipse",
+        "x": 658,
+        "y": 465,
+        "width": 142,
+        "height": 121,
+        "rotation": 0
+      }
+    ]
+  },
+  {
+    "id": "step-7",
+    "title": "Schritt 7",
+    "instruction": "Messerteilung wählen",
+    "sourceSlide": "ppt/slides/slide8.xml",
+    "slideWidthPx": 1074,
+    "slideHeightPx": 795,
+    "areas": [
+      {
+        "id": "slide-8-area-1",
+        "label": "Freihandform: Form 3",
+        "shape": "ellipse",
+        "x": 982,
+        "y": 392,
+        "width": 65,
+        "height": 140,
+        "rotation": 0
+      }
+    ]
+  }
+]

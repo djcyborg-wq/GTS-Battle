@@ -1,0 +1,23 @@
+{
+  "name": "gts-battle",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "dev": "concurrently \"npm run dev --prefix server\" \"npm run dev --prefix client\"",
+    "build": "npm run build --prefix server && npm run build --prefix client",
+    "start": "npm run start --prefix server",
+    "extract:steps": "npm run extract:steps --prefix server",
+    "test:e2e": "node test/e2e-smoke.mjs"
+  },
+  "keywords": [
+    "presentation",
+    "realtime",
+    "game"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}
