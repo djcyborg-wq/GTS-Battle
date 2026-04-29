@@ -346,6 +346,14 @@ app.get("/api/group-summary", (_req, res) => {
   res.json({ ok: true, summary });
 });
 
+const clientDistPath = path.resolve(__dirname, "../../../client/dist");
+if (existsSync(clientDistPath)) {
+  app.use(express.static(clientDistPath));
+  app.get(/^\/(?!api|socket\.io).*/, (_req, res) => {
+    res.sendFile(path.resolve(clientDistPath, "index.html"));
+  });
+}
+
 io.on("connection", (socket) => {
   socket.on("player:join", ({ name }: { name: string }) => {
     const cleaned = name.trim().slice(0, 24);

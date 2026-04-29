@@ -23,9 +23,7 @@ type GroupSummaryRow = {
 const resolveServerBase = () => {
   const fromEnv = import.meta.env.VITE_SERVER_URL;
   if (fromEnv) return fromEnv;
-  const protocol = window.location.protocol === "https:" ? "https:" : "http:";
-  const hostname = window.location.hostname || "localhost";
-  return `${protocol}//${hostname}:8080`;
+  return window.location.origin;
 };
 
 const serverBase = resolveServerBase();

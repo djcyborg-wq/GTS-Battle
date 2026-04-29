@@ -1,0 +1,13 @@
+node_modules
+**/node_modules
+dist
+**/dist
+.git
+.gitignore
+.vscode
+.idea
+coverage
+*.log
+assets/results
+assets/results-history.json
+.env
