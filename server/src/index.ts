@@ -346,7 +346,7 @@ app.get("/api/group-summary", (_req, res) => {
   res.json({ ok: true, summary });
 });
 
-const clientDistPath = path.resolve(__dirname, "../../../client/dist");
+const clientDistPath = path.resolve(__dirname, "../../client/dist");
 if (existsSync(clientDistPath)) {
   app.use(express.static(clientDistPath));
   app.get(/^\/(?!api|socket\.io).*/, (_req, res) => {
