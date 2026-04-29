@@ -146,6 +146,16 @@ const buildRanking = (players: Player[]) => {
     });
 };
 
+const hasClearLead = (
+  leader: { stepIndex: number; totalMs: number },
+  runnerUp?: { stepIndex: number; totalMs: number },
+): boolean => {
+  if (!runnerUp) return true;
+  if (leader.stepIndex > runnerUp.stepIndex) return true;
+  if (leader.stepIndex < runnerUp.stepIndex) return false;
+  return leader.totalMs < runnerUp.totalMs;
+};
+
 const state: GameState = {
   phase: "lobby",
   roomId: randomUUID().slice(0, 8),
@@ -208,7 +218,7 @@ app.post("/api/start", (_req, res) => {
   state.countdownEndsAt = Date.now() + 5_000;
   io.emit("game:countdown", { endsAt: state.countdownEndsAt });
   io.emit("host:state", getHostPayload());
-  io.emit("avatar:event", { type: "greeting", text: `Willkommen Team ${state.groupName}.` });
+  io.emit("avatar:event", { type: "countdown-started", text: "Countdown gestartet. Viel Erfolg!" });
 
   for (let number = 5; number >= 1; number -= 1) {
     const delay = (5 - number) * 1000;
@@ -417,9 +427,10 @@ io.on("connection", (socket) => {
       }
     }
 
-    const ranking = buildRanking(Object.values(state.players));
-    const leader = ranking[0];
-    if (leader && leader.id !== state.currentLeaderPlayerId) {
+    const activeRanking = buildRanking(Object.values(state.players).filter((entry) => entry.connected));
+    const leader = activeRanking[0];
+    const runnerUp = activeRanking[1];
+    if (leader && leader.id !== state.currentLeaderPlayerId && hasClearLead(leader, runnerUp)) {
       state.currentLeaderPlayerId = leader.id;
       io.emit("avatar:event", {
         type: "leader-change",
