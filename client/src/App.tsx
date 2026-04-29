@@ -114,6 +114,10 @@ function HostScreen() {
   };
 
   const loadGroupSummary = async () => {
+    if (showSummary) {
+      setShowSummary(false);
+      return;
+    }
     const response = await fetch(`${serverBase}/api/group-summary`);
     const payload = await response.json();
     if (payload?.ok) {
@@ -139,7 +143,7 @@ function HostScreen() {
             <button onClick={startGame} disabled={state.phase !== "lobby"}>Spiel starten</button>
             <button onClick={saveResults}>Ergebnisse speichern</button>
             <button onClick={resetGame}>Server reset</button>
-            <button onClick={loadGroupSummary}>Gruppenauswertung</button>
+            <button onClick={loadGroupSummary}>{showSummary ? "Gruppenauswertung ausblenden" : "Gruppenauswertung"}</button>
           </div>
           <div className="group-input-wrap">
             <h3>Gruppenname</h3>

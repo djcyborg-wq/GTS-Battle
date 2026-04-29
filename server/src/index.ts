@@ -131,9 +131,10 @@ const nextTemplate = (templates: string[], counter: "player" | "team"): string =
 const buildRanking = (players: Player[]) => {
   return players
     .map((player) => {
-      const totalMs =
-        player.stepDurationsMs.reduce((sum, part) => sum + part, 0) +
-        (player.finishedAt && state.startedAt ? player.finishedAt - state.startedAt : 0);
+      const completedStepsMs = player.stepDurationsMs.reduce((sum, part) => sum + part, 0);
+      const runningStepMs =
+        state.phase === "running" && !player.finishedAt ? Math.max(0, Date.now() - player.stepStartAt) : 0;
+      const totalMs = completedStepsMs + runningStepMs;
       const progress = (player.stepIndex / Math.max(1, state.steps.length)) * 100;
       return { ...player, totalMs, progress };
     })
