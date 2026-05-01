@@ -85,20 +85,22 @@ const getLanIp = (): string | undefined => {
   return candidate?.address;
 };
 
-const getJoinUrl = (hostHeader?: string) => {
+const getJoinUrl = (req: express.Request) => {
   const fromEnv = env.clientPublicUrl.trim();
   if (fromEnv) {
     return `${fromEnv.replace(/\/$/, "")}/join?room=${state.roomId}`;
   }
+  const hostHeader = String(req.headers.host ?? "").trim();
+  if (hostHeader) {
+    const forwardedProto = String(req.headers["x-forwarded-proto"] ?? "").split(",")[0].trim();
+    const protocol = forwardedProto || req.protocol || "http";
+    return `${protocol}://${hostHeader}/join?room=${state.roomId}`;
+  }
   const lanIp = getLanIp();
   if (lanIp) {
-    return `http://${lanIp}:5173/join?room=${state.roomId}`;
+    return `http://${lanIp}:${env.hostPort}/join?room=${state.roomId}`;
   }
-  if (hostHeader) {
-    const host = hostHeader.split(":")[0];
-    return `http://${host}:5173/join?room=${state.roomId}`;
-  }
-  return `http://localhost:5173/join?room=${state.roomId}`;
+  return `http://localhost:${env.hostPort}/join?room=${state.roomId}`;
 };
 
 const playerWelcomeTemplates = [
@@ -181,7 +183,7 @@ app.get("/api/health", (_req, res) => {
 });
 
 app.get("/api/config", async (_req, res) => {
-  const joinUrl = getJoinUrl(_req.headers.host);
+  const joinUrl = getJoinUrl(_req);
   const qrCodeDataUrl = await QRCode.toDataURL(joinUrl, {
     margin: 1,
     width: 280,
