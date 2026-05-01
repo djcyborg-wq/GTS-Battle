@@ -21,7 +21,15 @@
 - `POST /api/start` Runde starten
 - `POST /api/save-results` Ergebnisse persistieren
 - `POST /api/reset` Lobby/Room resetten
-- `GET /api/group-summary` CSV-Auswertung aller Gruppen
+- `GET /api/group-summary` CSV-Auswertung aller Gruppen (fastest/slowest/average, Teilnehmer, schnellster Name)
+- `DELETE /api/group-summary/:group` Einzelne Gruppen-Auswertung loeschen (CSV/TXT)
+
+## Join-URL-Logik
+- `GET /api/config` erzeugt `joinUrl` in dieser Prioritaet:
+  1. `CLIENT_PUBLIC_URL` (falls gesetzt)
+  2. Host/Proto aus der eingehenden Anfrage
+  3. Fallback auf lokale Adresse mit `HOST_PORT`
+- Damit funktionieren QR-Links auch im Docker-/Serverbetrieb ohne harte `:5173`-Annahme.
 
 ## Socket-Events (Auszug)
 - `player:join`, `player:hit`

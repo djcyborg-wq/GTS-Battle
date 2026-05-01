@@ -42,9 +42,11 @@ Praesentationsreifes Multiplayer-Zeitspiel fuer Laptop-Host und Handy-Spieler.
 - `npm run test:e2e` fuehrt den API-Smoke-Test aus
 
 ## URLS
-- Host: `http://localhost:5173/host`
-- Player: `http://localhost:5173/`
+- Host (lokal mit Vite): `http://localhost:5173/host`
+- Host (Deployment): `http://<server>:8080/host`
+- Player (Deployment): `http://<server>:8080/join?room=<ROOM_ID>`
 - Health: `http://localhost:8080/api/health`
+- Config (liefert QR + joinUrl): `http://localhost:8080/api/config`
 
 ## Ergebnisdateien
 - Historie gesamt: `assets/results-history.json`
@@ -56,12 +58,13 @@ Praesentationsreifes Multiplayer-Zeitspiel fuer Laptop-Host und Handy-Spieler.
 - `Spiel starten`: startet 5s Countdown und Runde.
 - `Ergebnisse speichern`: schreibt JSON/CSV/TXT.
 - `Server reset`: neue Room-ID, neue Lobby, neue Gruppe moeglich.
-- `Gruppenauswertung`: liest alle Gruppen-CSV und zeigt Kennzahlen.
+- `Gruppenauswertung`: liest alle Gruppen-CSV und zeigt Kennzahlen (schnellste, langsamste, durchschnittliche Zeit, Teilnehmerzahl, schnellster Spieler).
+- `Gruppe loeschen (🗑️)`: entfernt einzelne Gruppen-Dateien aus der Auswertung.
 
 ## Netzwerk-Hinweise
-- QR-Link wird automatisch auf LAN-IP aufgebaut (wenn moeglich).
+- QR-Link wird aus `CLIENT_PUBLIC_URL` oder aus der aktuellen Host-Anfrage erzeugt.
 - Bei Handy-Problemen im Firmennetz:
-  - Firewall Ports 5173/8080 pruefen
+  - Firewall/Router fuer Port 8080 pruefen
   - gleiche WLAN-/Netzsegment-Verbindung sicherstellen
 
 ## Avatar/Sprach-Events

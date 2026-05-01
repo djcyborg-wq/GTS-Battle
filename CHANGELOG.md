@@ -2,6 +2,16 @@
 
 Alle nennenswerten Aenderungen an diesem Projekt werden hier dokumentiert.
 
+## [Unreleased]
+
+### Changed
+- Browser-Tab in der Host-Ansicht auf `GTS-Battle` vereinheitlicht.
+- Gruppenauswertung im Host erweitert: schnellste, langsamste und durchschnittliche Zeit sowie Teilnehmerzahl und schnellster Spieler pro Gruppe.
+- Join-URL-Generierung fuer QR verbessert, damit Deployment-Hosts (inkl. Docker/Hetzner) korrekt auf `/join` verlinken.
+
+### Added
+- Loeschfunktion pro Gruppe in der Host-Gruppenauswertung (`🗑️`) inklusive API-Endpunkt `DELETE /api/group-summary/:group`.
+
 ## [1.0.0] - 2026-04-27
 
 ### Added
