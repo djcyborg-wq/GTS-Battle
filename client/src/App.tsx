@@ -15,9 +15,11 @@ type GameStep = {
 type HostPlayer = { id: string; rank: number; name: string; progress: number; currentStep: number; totalMs: number; connected: boolean };
 type GroupSummaryRow = {
   group: string;
-  rounds: number;
-  bestSeconds: number | null;
-  averageWinnerSeconds: number | null;
+  fastestSeconds: number | null;
+  slowestSeconds: number | null;
+  averageSeconds: number | null;
+  participants: number;
+  fastestPlayer: string | null;
 };
 
 const resolveServerBase = () => {
@@ -48,6 +50,10 @@ function HostScreen() {
   const [actionMessage, setActionMessage] = useState("");
   const [showSummary, setShowSummary] = useState(false);
   const [groupSummary, setGroupSummary] = useState<GroupSummaryRow[]>([]);
+
+  useEffect(() => {
+    document.title = "GTS-Battle";
+  }, []);
 
   useEffect(() => {
     void fetch(`${serverBase}/api/config`).then(async (res) => {
@@ -123,6 +129,19 @@ function HostScreen() {
     if (payload?.ok) {
       setGroupSummary(payload.summary);
       setShowSummary(true);
+    }
+  };
+
+  const deleteGroup = async (group: string) => {
+    const response = await fetch(`${serverBase}/api/group-summary/${encodeURIComponent(group)}`, {
+      method: "DELETE",
+    });
+    const payload = await response.json();
+    if (payload?.ok) {
+      setActionMessage(`Gruppe ${group} wurde gelöscht.`);
+      setGroupSummary((old) => old.filter((row) => row.group !== group));
+    } else {
+      setActionMessage(`Gruppe ${group} konnte nicht gelöscht werden.`);
     }
   };
 
@@ -206,18 +225,35 @@ function HostScreen() {
             <thead>
               <tr>
                 <th>Gruppe</th>
-                <th>Runden</th>
-                <th>Beste Siegerzeit</th>
-                <th>Durchschnitt Sieger</th>
+                <th>Schnellste Zeit</th>
+                <th>Langsamste Zeit</th>
+                <th>Durchschnitt</th>
+                <th>Teilnehmer</th>
+                <th>Schnellster</th>
+                <th>Aktion</th>
               </tr>
             </thead>
             <tbody>
               {groupSummary.map((row) => (
                 <tr key={row.group}>
                   <td>{row.group}</td>
-                  <td>{row.rounds}</td>
-                  <td>{row.bestSeconds === null ? "-" : `${row.bestSeconds.toFixed(2)}s`}</td>
-                  <td>{row.averageWinnerSeconds === null ? "-" : `${row.averageWinnerSeconds.toFixed(2)}s`}</td>
+                  <td>{row.fastestSeconds === null ? "-" : `${row.fastestSeconds.toFixed(2)}s`}</td>
+                  <td>{row.slowestSeconds === null ? "-" : `${row.slowestSeconds.toFixed(2)}s`}</td>
+                  <td>{row.averageSeconds === null ? "-" : `${row.averageSeconds.toFixed(2)}s`}</td>
+                  <td>{row.participants}</td>
+                  <td>{row.fastestPlayer ?? "-"}</td>
+                  <td>
+                    <button
+                      type="button"
+                      className="trash-btn"
+                      title={`Gruppe ${row.group} löschen`}
+                      onClick={() => {
+                        void deleteGroup(row.group);
+                      }}
+                    >
+                      🗑️
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>

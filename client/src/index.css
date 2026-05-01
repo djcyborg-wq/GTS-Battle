@@ -34,6 +34,18 @@ h1, h2, h3 { margin: 0 0 .5rem; }
   font-size: .9rem;
   padding: .48rem .68rem;
 }
+.trash-btn {
+  min-width: 40px;
+  padding: .35rem .5rem;
+  font-size: 1rem;
+  line-height: 1;
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+  border: 1px solid rgba(248, 113, 113, 0.4);
+}
+.trash-btn:hover {
+  background: rgba(239, 68, 68, 0.3);
+}
 .host-info-col {
   display: grid;
   gap: .35rem;

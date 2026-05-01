@@ -5,7 +5,7 @@ import http from "http";
 import path from "path";
 import os from "os";
 import { randomUUID } from "crypto";
-import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readdirSync, readFileSync, unlinkSync, writeFileSync } from "fs";
 import { Server } from "socket.io";
 import QRCode from "qrcode";
 
@@ -328,33 +328,72 @@ app.get("/api/group-summary", (_req, res) => {
     if (rows.length <= 1) {
       return {
         group: file.replace(/\.csv$/i, ""),
-        rounds: 0,
-        bestSeconds: null,
-        averageWinnerSeconds: null,
+        fastestSeconds: null,
+        slowestSeconds: null,
+        averageSeconds: null,
+        participants: 0,
+        fastestPlayer: null,
       };
     }
     const dataRows = rows.slice(1);
-    const winnerRows = dataRows.filter((line) => line.split(",")[3] === "1");
-    const winnerTimes = winnerRows
-      .map((line) => Number(line.split(",")[6]))
-      .filter((value) => Number.isFinite(value));
-    const bestSeconds = winnerTimes.length ? Math.min(...winnerTimes) : null;
-    const averageWinnerSeconds = winnerTimes.length
-      ? winnerTimes.reduce((sum, value) => sum + value, 0) / winnerTimes.length
-      : null;
+    const parsedRows = dataRows
+      .map((line) => {
+        const columns = line.split(",");
+        return {
+          name: String(columns[4] ?? "").trim(),
+          totalSeconds: Number(columns[6]),
+        };
+      })
+      .filter((entry) => entry.name.length > 0 && Number.isFinite(entry.totalSeconds));
+    const allTimes = parsedRows.map((entry) => entry.totalSeconds);
+    const fastestSeconds = allTimes.length ? Math.min(...allTimes) : null;
+    const slowestSeconds = allTimes.length ? Math.max(...allTimes) : null;
+    const averageSeconds = allTimes.length ? allTimes.reduce((sum, value) => sum + value, 0) / allTimes.length : null;
+    const participants = new Set(parsedRows.map((entry) => entry.name.toLowerCase())).size;
+    const fastestPlayer =
+      parsedRows.length > 0
+        ? parsedRows.reduce((best, current) => (current.totalSeconds < best.totalSeconds ? current : best)).name
+        : null;
     return {
       group: file.replace(/\.csv$/i, ""),
-      rounds: winnerRows.length,
-      bestSeconds,
-      averageWinnerSeconds,
+      fastestSeconds,
+      slowestSeconds,
+      averageSeconds,
+      participants,
+      fastestPlayer,
     };
   });
   summary.sort((a, b) => {
-    const left = a.bestSeconds ?? Number.POSITIVE_INFINITY;
-    const right = b.bestSeconds ?? Number.POSITIVE_INFINITY;
+    const left = a.fastestSeconds ?? Number.POSITIVE_INFINITY;
+    const right = b.fastestSeconds ?? Number.POSITIVE_INFINITY;
     return left - right;
   });
   res.json({ ok: true, summary });
+});
+
+app.delete("/api/group-summary/:group", (req, res) => {
+  const group = String(req.params.group ?? "").trim();
+  if (!group) {
+    res.status(400).json({ error: "group required" });
+    return;
+  }
+  const groupSlug = sanitizeFilenamePart(group);
+  const csvPath = path.resolve(env.resultsDir, `${groupSlug}.csv`);
+  const txtPath = path.resolve(env.resultsDir, `${groupSlug}.txt`);
+  let deleted = false;
+  if (existsSync(csvPath)) {
+    unlinkSync(csvPath);
+    deleted = true;
+  }
+  if (existsSync(txtPath)) {
+    unlinkSync(txtPath);
+    deleted = true;
+  }
+  if (!deleted) {
+    res.status(404).json({ error: "group not found" });
+    return;
+  }
+  res.json({ ok: true, group: groupSlug });
 });
 
 const clientDistPath = path.resolve(__dirname, "../../client/dist");
